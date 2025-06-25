@@ -27,7 +27,7 @@ export const UserManagement = ({ initialUsers, initialTotal }: UserManagementPro
   const [filters, setFilters] = useState<UserFilters>({
     search: "",
     estado: "",
-    sector: SECTOR_FILTER_OPTIONS[0].value, // Sector por defecto 2222
+    sector: SECTOR_FILTER_OPTIONS[0].value, // Sector por defecto 5000
     page: 1,
     limit: 10,
   })

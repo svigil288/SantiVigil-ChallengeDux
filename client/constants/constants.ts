@@ -4,7 +4,7 @@ export const ESTADO_FILTER_OPTIONS = [
 ];
 
 export const SECTOR_FILTER_OPTIONS = [
-  { label: "Comercial", value: 2222 },
+  { label: "Comercial", value: 5000 },
 ];
 
 export const TOAST_MESSAGES = {

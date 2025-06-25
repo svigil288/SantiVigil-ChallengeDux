@@ -21,5 +21,5 @@ export interface UserFilters {
 }
 
 export const SECTOR_LABELS: Record<number, string> = {
-  2222: "Comercial",
+  5000: "Comercial", // Comercial es sólo un ej para mapear un sector y mostrarlo
 }

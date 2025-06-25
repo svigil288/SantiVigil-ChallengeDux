@@ -155,9 +155,8 @@ export const UserForm = ({ visible, onHide, onSubmit, user, loading = false, onD
                   id="sector"
                   {...field}
                   options={sectorOptions}
-                  value={2222}
+                  value={sectorOptions[0].value}
                   disabled
-                  placeholder="Comercial"
                   className={styles.formDropdown}
                   optionLabel="label"
                   optionValue="value"
