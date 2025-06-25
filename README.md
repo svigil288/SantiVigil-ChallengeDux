@@ -46,13 +46,23 @@ This project is a web application developed as part of the technical challenge f
    npm install
    ```
 
-3. **Start the application**
+3. **Run the application**
+
+    **Production mode:**
+   ```bash
+   npm run build
+   npm run start
+   ```
+
+   **Development mode:**
    ```bash
    npm run dev
    ```
 
 4. **Access the application**
    - Application: http://localhost:3000
+
+
 
 ## Author
 
