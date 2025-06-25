@@ -1,0 +1,32 @@
+.customSidebar {
+  width: 65px;
+  background-color: var(--sidebar-bg);
+  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+}
+
+.sidebarItem {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  background: transparent;
+}
+
+.sidebarItem:hover {
+  background-color: var(--sidebar-hover);
+  color: white;
+}
+
+.sidebarItem.active {
+  background-color: var(--sidebar-active);
+  color: white;
+}
+
+.sidebarIcon {
+  font-size: 1.1rem;
+  color: #fff;
+  cursor: pointer;
+}

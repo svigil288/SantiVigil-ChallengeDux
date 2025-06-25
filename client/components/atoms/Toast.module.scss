@@ -1,0 +1,32 @@
+/* Toast customization */
+.toastContainer :global(.p-toast .p-toast-message) {
+  min-width: 250px;
+  max-width: 350px;
+}
+
+.toastContainer :global(.p-toast .p-toast-message .p-toast-message-content) {
+  padding: 0.75rem;
+}
+
+.toastContainer :global(.p-toast .p-toast-message .p-toast-message-content .p-toast-message-icon) {
+  font-size: 1.25rem;
+}
+
+.toastContainer :global(.p-toast .p-toast-message .p-toast-message-content .p-toast-message-icon.p-icon) {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.toastContainer :global(.p-toast .p-toast-message .p-toast-message-content .p-toast-message-text) {
+  margin: 0 0 0 0.75rem;
+}
+
+.toastContainer :global(.p-toast .p-toast-message .p-toast-message-content .p-toast-summary) {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.toastContainer :global(.p-toast .p-toast-message .p-toast-message-content .p-toast-detail) {
+  font-size: 0.8rem;
+  margin: 0.25rem 0 0 0;
+}

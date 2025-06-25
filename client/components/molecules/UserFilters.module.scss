@@ -1,0 +1,67 @@
+.filtersContainer {
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--border-color);
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.filtersRow {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.searchContainer {
+  flex: 1;
+  position: relative;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-secondary);
+  z-index: 1;
+}
+
+.searchInput {
+  width: 100%;
+  padding-left: 2.5rem !important;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.filterDropdown {
+  width: 100%;
+  padding-left: 2.5rem !important;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.filterButtons {
+  display: flex;
+  gap: 0.5rem;
+  height: 90%;
+}
+
+@media (min-width: 768px) {
+  .filtersContainer {
+    flex-direction: row;
+    align-items: center;
+  }
+  .filtersRow {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 7px;
+  }
+  .searchContainer {
+    max-width: none;
+  }
+}

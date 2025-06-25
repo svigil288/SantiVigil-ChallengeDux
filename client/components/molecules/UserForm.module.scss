@@ -1,0 +1,275 @@
+/* 1. DIALOG CONTAINER */
+.customUserDialog {
+  width: 100vw;
+  min-width: 0;
+  max-width: 100vw;
+  border-radius: 0;
+
+  /* BREAKPOINTS */
+  @media (min-width: 600px) {
+    border-radius: 8px;
+  }
+
+  @media (min-width: 768px) {
+    width: 95vw;
+    max-width: 95vw;
+  }
+
+  @media (min-width: 1200px) {
+    width: 1100px;
+    max-width: 1100px;
+  }
+
+  /* 1.2 DIALOG OVERRIDES */
+  :global(.p-dialog) {
+    border-radius: 8px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    animation: dialogShow 0.3s ease-out;
+    padding: 17.5px;
+  }
+
+  :global(.p-dialog-mask) {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  /* 1.3 DIALOG HEADER */
+  :global(.p-dialog-header) {
+    background-color: var(--primary-blue);
+    color: white;
+    border-radius: 8px 8px 0 0;
+    border: none;
+
+    :global(.p-dialog-title) {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: white;
+    }
+
+    :global(.p-dialog-header-icons) {
+      color: white;
+      align-self: center;
+      padding-right: 17.5px;
+
+      :global(.p-dialog-header-icon) {
+        color: white;
+        width: 2rem;
+        height: 2rem;
+      }
+
+      :global(.p-dialog-header-icon:hover) {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+    }
+  }
+
+  /* 1.4 DIALOG CONTENT */
+  :global(.p-dialog-content) {
+    padding: 17.5px;
+    background-color: white;
+    border-radius: 0 0 8px 8px;
+  }
+}
+
+/* 2. CUSTOM HEADER*/
+.customUserDialogHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.25rem;
+  font-weight: 600;
+  padding-bottom: 0.5rem;
+  padding: 17.5px;
+}
+
+.helpIcon {
+  margin-left: 0.5rem;
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+}
+
+.helpIcon:hover {
+  color: white;
+}
+
+.headerIcon {
+  font-size: 1rem;
+  color: rgba(37, 99, 235, 0.8);
+  cursor: pointer;
+  margin-left: 0.5rem;
+}
+
+/* 3. FORM */
+.formField {
+  margin-bottom: 1.5rem;
+}
+
+.formLabel {
+  display: block;
+  font-size: 17.5px;
+  font-weight: 600;
+  color: var(--text-form-label);
+  margin-bottom: 14px;
+}
+
+.formInputContainer {
+  position: relative;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-secondary);
+  z-index: 1;
+}
+
+/* 4. FORM INPUTS */
+.formInput {
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 12px;
+}
+
+.formInput::placeholder {
+  color: var(--text-secondary);
+}
+
+/* 5. FORM DROPDOWN */
+.formDropdown {
+  width: 100%;
+  padding-left: 2.5rem !important;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.formDropdown .p-dropdown:not(.p-disabled):hover {
+  border-color: var(--border-form-color);
+}
+
+.formDropdown .p-dropdown:not(.p-disabled).p-focus {
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.formDropdown .p-dropdown .p-dropdown-label {
+  color: var(--border-form-color);
+  padding: 0;
+}
+
+.formDropdown .p-dropdown .p-dropdown-label.p-placeholder {
+  color: #6B7280;
+}
+
+/* 6. ERRORES*/
+.errorMessage {
+  margin-top: 0.5rem;
+  gap: 7px;
+}
+
+.pInlineMessageIcon {
+  margin-right: 5px;
+}
+
+/* 7. FORM VALIDACIONES */
+.formInput.p-invalid,
+.formDropdown :global(.p-dropdown.p-invalid) {
+  border-color: var(--danger-color);
+}
+
+.formInput.p-invalid:focus,
+.formDropdown :global(.p-dropdown.p-invalid:focus) {
+  border-color: var(--danger-color);
+  box-shadow: 0 0 0 3px rgba(255, 87, 87, 0.1);
+}
+
+/* 8. FORM BOTONES */
+.formButtons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 8px;
+  padding: 17.5px;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid var(--primary-gray);
+}
+
+.confirmButton {
+  background-color: var(--tertiary-blue);
+  border-color: var(--tertiary-blue);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.confirmButton:hover {
+  background-color: var(--primary-blue-hover);
+  border-color: var(--primary-blue-hover);
+}
+
+.cancelButton {
+  background-color: transparent;
+  border: 1px solid var(--secondary-blue);
+  color: var(--secondary-blue);
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.cancelButton:hover {
+  background-color: #eff6ff;
+  border-color: var(--secondary-blue);
+  color: var(--secondary-blue);
+}
+
+.deleteButton {
+  display: flex;
+  align-self: flex-start;
+  background-color: transparent;
+  border: 1px solid var(--danger-color);
+  color: var(--danger-color);
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.875rem;
+  align-items: center;
+  gap: 7px;
+}
+
+.deleteButton:hover,
+.deleteButton:focus {
+  background-color: var(--danger-color);
+  color: #fff;
+  border-color: var(--danger-color);
+  box-shadow: 0 0 0 3px rgba(255, 87, 87, 0.1);
+}
+
+/* 9. ANIMACIONES */
+@keyframes dialogShow {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
