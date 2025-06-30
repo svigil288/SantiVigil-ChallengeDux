@@ -152,3 +152,86 @@ export const UserManagement = ({ initialUsers, initialTotal }: UserManagementPro
     </div>
   )
 }
+
+/*
+  NOTA DE OPTIMIZACIÓN:
+  
+  1. Hay muchos estasdos individuales que estan relacionados entre si, esto puede generar, entre las actualizaciones de estados 
+  en cadena, re-renders innecesarios. React 18 implementa batching automático incluso para operaciones asíncronas, pero en versiones
+  anteriores (React 17-) solo batchea en event handlers síncronos, lo que puede causar múltiples re-renders innecesarios.
+  
+  Para optimizar eso podrian implementarse otros patrones que dan mayor control y no requieren tanto mantenimiento de codigo: 
+  * utilizar un useReducer 
+  lo que permite manejar el estado de manera mas controlada y evitar re-renders innecesarios.
+
+  type State = {
+  users: User[]
+  totalRecords: number
+  loading: boolean
+  formLoading: boolean
+  showForm: boolean
+  selectedUser: User | null
+  filters: UserFilters
+}
+
+type Action = 
+  | { type: 'SET_LOADING'; payload: boolean }
+  | { type: 'SET_USERS'; payload: { users: User[]; total: number } }
+  | { type: 'OPEN_FORM'; payload: User | null }
+  | { type: 'CLOSE_FORM' }
+
+Un solo dispatch, un solo re-render
+
+dispatch({ type: 'OPEN_FORM', payload: user })
+
+ *Utilizar un custom hook para gestionar los estados dependiendo las responsabilidades.
+
+  - useUserFilters(): Gestiona lógica de filtros (reutilizable en otras páginas)
+  - useUserOperations(): Maneja CRUD operations con loading states unificados
+  - useFormModal(): Controla apertura/cierre de modales
+
+  2. Mejora en las dependencias de useEffect, patrón ANTI-PATTERN.
+  
+  CÓDIGO ACTUAL:
+  useEffect(() => {
+    if (isInitialRender.current) {
+      isInitialRender.current = false;
+      return;
+    }
+    loadUsers()
+  }, [loadUsers])
+  
+  *. DEPENDENCIA REDUNDANTE: useEffect depende de [loadUsers], pero loadUsers 
+     depende de [filters]. Es como poner una alarma para otra alarma.
+     
+  *. LÓGICA DE INICIALIZACIÓN CONFUSA: isInitialRender.current puede causar 
+     comportamiento inconsistente entre primer y segundo mount del componente.
+     
+  *. TIMING INESPERADO: Si el componente se desmonta/monta, el comportamiento 
+     cambia (primera vez no carga, segunda vez sí carga).
+  
+  SOLUCIÓN RECOMENDADA:
+  useEffect(() => {
+    loadUsers()
+  }, [filters]) // Dependencia directa, comportamiento predecible
+  
+  JUSTIFICACIÓN:
+  - Más simple y directo
+  - Comportamiento consistente en todos los mounts
+  - Fácil de entender y debuggear
+  - Elimina lógica innecesaria con refs
+
+  
+  Si realmente necesitas evitar la carga inicial, usar useState 
+  en lugar de useRef para mejor control del estado.
+
+  3. Duplicacion de logica asincrona:
+   - Patrón try/catch/finally repetido en múltiples handlers
+   - Inconsistencia en loading states (formLoading vs sin loading para delete)
+   - Manejo de errores no estandarizado
+   
+   SOLUCIÓN: Custom hook useAsyncOperation() para unificar operaciones
+  
+  - Fecha: [30/06/2025]
+  - Impacto: Menor, solo optimización de performance
+*/

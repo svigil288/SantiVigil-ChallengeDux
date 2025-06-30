@@ -2,6 +2,7 @@ import type { User, UserFormData, UserFilters } from "@/types/user"
 import axiosClient from "./axiosClient"
 
 export async function getUsers(filters: UserFilters): Promise<{ users: User[]; total: number }> {
+  // Todos los filtros son requeridos?
   try {
     if (!filters) {
       throw new Error("Filters are required")
@@ -40,11 +41,12 @@ export async function getUsers(filters: UserFilters): Promise<{ users: User[]; t
 export async function createUser(userData: UserFormData): Promise<User> {
   try {
     const apiEstado = userData.estado === "Activo" ? "ACTIVO" : userData.estado === "Inactivo" ? "INACTIVO" : userData.estado
-    
+    // se podria haber definido intermanete como constantes
     const response = await axiosClient.post('', {
       ...userData,
       estado: apiEstado,
     })
+// destructurar el response.data
 
     return response.data
   } catch (error) {
@@ -61,7 +63,7 @@ export async function updateUser(id: number, userData: UserFormData): Promise<Us
       ...userData,
       estado: apiEstado,
     })
-
+// destructurar el response.data
     return response.data
   } catch (error) {
     console.error("Error updating user:", error)
@@ -72,6 +74,7 @@ export async function updateUser(id: number, userData: UserFormData): Promise<Us
 export async function deleteUser(id: number): Promise<void> {
   try {
     await axiosClient.delete(`/${id}`)
+// dno hay ninguna resp para el delete?
   } catch (error) {
     console.error("Error deleting user:", error)
     throw error

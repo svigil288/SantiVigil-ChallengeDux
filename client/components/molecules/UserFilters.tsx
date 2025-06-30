@@ -92,3 +92,30 @@ export const UserFilters = ({ filters, onFiltersChange, onClearFilters }: UserFi
     </div>
   )
 }
+
+/*
+  NOTA DE OPTIMIZACIÓN:
+  
+  Los dos useEffect actuales funcionan correctamente pero generan re-renders innecesarios:
+  
+  1. Cuando el usuario escribe: el segundo useEffect setea searchInput con el mismo valor que ya tiene
+  2. Cuando se limpian filtros: el primer useEffect se ejecuta sin hacer nada útil
+  
+  OPTIMIZACIÓN RECOMENDADA:
+  Cambiar el segundo useEffect por:
+  
+  useEffect(() => {
+    if (filters.search !== searchInput) {
+      setSearchInput(filters.search)
+    }
+  }, [filters.search, searchInput])
+  
+  Esto evita setear el estado cuando el valor es el mismo, reduciendo re-renders innecesarios.
+  
+  FLUJO ACTUAL:
+  Usuario escribe → searchInput cambia → debouncedSearch cambia → handleFilterChange → 
+  filters.search cambia → segundo useEffect setea searchInput OTRA VEZ (innecesario)
+  
+  - Fecha: [30/06/2025]
+  - Impacto: Menor, solo optimización de performance
+*/
